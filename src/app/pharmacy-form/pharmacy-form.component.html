@@ -33,10 +33,22 @@
         Tel is required
       </div>
     </div>
-    <div class="col-12 form-group">
+    <div class="col-6 form-group">
       <input type="text" class="form-control" [(ngModel)]="model.web" name="web" #web="ngModel">
       <div [hidden]="web.valid || web.pristine" class="alert alert-danger">
         Tel is required
+      </div>
+    </div>
+    <div class="col-3 form-group">
+      <input type="text" class="form-control" [(ngModel)]="model.lat" name="lat" #lat="ngModel" required>
+      <div [hidden]="lat.valid || lat.pristine" class="alert alert-danger">
+        Lat is required
+      </div>
+    </div>
+    <div class="col-3 form-group">
+      <input type="text" class="form-control" [(ngModel)]="model.lng" name="lng" #lng="ngModel" required>
+      <div [hidden]="lng.valid || lng.pristine" class="alert alert-danger">
+        Lng is required
       </div>
     </div>
     <div class="col-12 form-group">

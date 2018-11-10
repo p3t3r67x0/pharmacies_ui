@@ -20,7 +20,9 @@ export class PharmacyFormComponent implements OnInit {
     this.city = this.item['city'];
     this.tel = this.item['tel'];
     this.web = this.item['web'];
-    this.model = new Pharmacy(this.id, this.name, this.adr, this.zip, this.city, this.tel, this.web);
+    this.lat = this.item['lat'];
+    this.lng = this.item['lng'];
+    this.model = new Pharmacy(this.id, this.name, this.adr, this.zip, this.city, this.tel, this.web, this.lat, this.lng);
   }
 
   model: Pharmacy;
@@ -31,6 +33,8 @@ export class PharmacyFormComponent implements OnInit {
   city: string;
   tel: string;
   web: string;
+  lat: string;
+  lng: string;
 
   onSubmit() {
     this.updatePharmacy(this.model);

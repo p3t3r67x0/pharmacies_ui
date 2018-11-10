@@ -6,6 +6,8 @@ export class Pharmacy {
     public zip: string,
     public city: string,
     public tel: string,
-    public web: string
+    public web: string,
+    public lat: string,
+    public lng: string
   ) { }
 }
