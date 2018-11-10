@@ -1,0 +1,46 @@
+<form (ngSubmit)="onSubmit()" #pharmacyForm="ngForm">
+  <div class="row mb-3">
+    <div class="col-12">
+      <h2>{{ model.name }}</h2>
+    </div>
+    <div class="col-12 form-group">
+      <input type="text" class="form-control" [(ngModel)]="model.name" name="name" #name="ngModel" required>
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        Name is required
+      </div>
+    </div>
+    <div class="col-12 form-group">
+      <input type="text" class="form-control" [(ngModel)]="model.adr" name="adr" #adr="ngModel" required>
+      <div [hidden]="adr.valid || adr.pristine" class="alert alert-danger">
+        Address is required
+      </div>
+    </div>
+    <div class="col-3 form-group">
+      <input type="text" class="form-control" [(ngModel)]="model.zip" name="zip" #zip="ngModel" required>
+      <div [hidden]="zip.valid || zip.pristine" class="alert alert-danger">
+        Zip is required
+      </div>
+    </div>
+    <div class="col-6 form-group">
+      <input type="text" class="form-control" [(ngModel)]="model.city" name="city" #city="ngModel" required>
+      <div [hidden]="city.valid || city.pristine" class="alert alert-danger">
+        City is required
+      </div>
+    </div>
+    <div class="col-3 form-group">
+      <input type="text" class="form-control" [(ngModel)]="model.tel" name="tel" #tel="ngModel" required>
+      <div [hidden]="tel.valid || tel.pristine" class="alert alert-danger">
+        Tel is required
+      </div>
+    </div>
+    <div class="col-12 form-group">
+      <input type="text" class="form-control" [(ngModel)]="model.web" name="web" #web="ngModel">
+      <div [hidden]="web.valid || web.pristine" class="alert alert-danger">
+        Tel is required
+      </div>
+    </div>
+    <div class="col-12 form-group">
+      <button type="submit" class="btn btn-success" [disabled]="!pharmacyForm.form.valid">Speichern</button>
+    </div>
+  </div>
+</form>
