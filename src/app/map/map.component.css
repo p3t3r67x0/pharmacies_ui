@@ -1,0 +1,51 @@
+.map {
+  height: 100vh;
+  padding: 0;
+}
+
+.no-mlr {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.no-p {
+  padding: 0;
+}
+
+#featureProperties {
+  background-color: #8d9bb1;
+}
+
+.info-use {
+  font-family: 'Noto Sans TC', sans-serif;
+  color: #120e0e;
+  padding: 1rem;
+  font-size: 1.8rem;
+}
+
+.info-box {
+  background-color: #4285F4;
+  color: #fff;
+  padding: 1rem;
+  font-size: 1.3rem;
+  min-height: 210px;
+}
+
+.info-box a {
+  color: #fff;
+}
+
+.opening-hours {
+  color: #fff;
+  padding: 1rem;
+}
+
+.opening-hours td {
+  font-size: 1.4rem;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.opening-hours td.bold {
+  font-weight: bold;
+}

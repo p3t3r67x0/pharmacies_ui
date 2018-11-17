@@ -1,56 +1,90 @@
 <form (ngSubmit)="onSubmit()" #pharmacyForm="ngForm">
   <div class="row mb-3">
     <div class="col-12">
-      <h2>{{ model.name }}</h2>
+      <h2>{{ pharmacyModel.name }}</h2>
     </div>
     <div class="col-12 form-group">
-      <input type="text" class="form-control" [(ngModel)]="model.name" name="name" #name="ngModel" required>
-      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+      <input type="text" class="form-control" [(ngModel)]="pharmacyModel.name" name="name" #name="ngModel" required>
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger mt-2">
         Name is required
       </div>
     </div>
     <div class="col-12 form-group">
-      <input type="text" class="form-control" [(ngModel)]="model.adr" name="adr" #adr="ngModel" required>
-      <div [hidden]="adr.valid || adr.pristine" class="alert alert-danger">
+      <input type="text" class="form-control" [(ngModel)]="pharmacyModel.adr" name="adr" #adr="ngModel" required>
+      <div [hidden]="adr.valid || adr.pristine" class="alert alert-danger mt-2">
         Address is required
       </div>
     </div>
     <div class="col-3 form-group">
-      <input type="text" class="form-control" [(ngModel)]="model.zip" name="zip" #zip="ngModel" required>
-      <div [hidden]="zip.valid || zip.pristine" class="alert alert-danger">
+      <input type="text" class="form-control" [(ngModel)]="pharmacyModel.zip" name="zip" #zip="ngModel" required>
+      <div [hidden]="zip.valid || zip.pristine" class="alert alert-danger mt-2">
         Zip is required
       </div>
     </div>
     <div class="col-6 form-group">
-      <input type="text" class="form-control" [(ngModel)]="model.city" name="city" #city="ngModel" required>
-      <div [hidden]="city.valid || city.pristine" class="alert alert-danger">
+      <input type="text" class="form-control" [(ngModel)]="pharmacyModel.city" name="city" #city="ngModel" required>
+      <div [hidden]="city.valid || city.pristine" class="alert alert-danger mt-2">
         City is required
       </div>
     </div>
     <div class="col-3 form-group">
-      <input type="text" class="form-control" [(ngModel)]="model.tel" name="tel" #tel="ngModel" required>
-      <div [hidden]="tel.valid || tel.pristine" class="alert alert-danger">
+      <input type="text" class="form-control" [(ngModel)]="pharmacyModel.tel" name="tel" #tel="ngModel" required>
+      <div [hidden]="tel.valid || tel.pristine" class="alert alert-danger mt-2">
         Tel is required
       </div>
     </div>
     <div class="col-6 form-group">
-      <input type="text" class="form-control" [(ngModel)]="model.web" name="web" #web="ngModel">
-      <div [hidden]="web.valid || web.pristine" class="alert alert-danger">
+      <input type="text" class="form-control" [(ngModel)]="pharmacyModel.web" name="web" #web="ngModel">
+      <div [hidden]="web.valid || web.pristine" class="alert alert-danger mt-2">
         Tel is required
       </div>
     </div>
     <div class="col-3 form-group">
-      <input type="text" class="form-control" [(ngModel)]="model.lat" name="lat" #lat="ngModel" required>
-      <div [hidden]="lat.valid || lat.pristine" class="alert alert-danger">
+      <input type="text" class="form-control" [(ngModel)]="pharmacyModel.lat" name="lat" #lat="ngModel" required>
+      <div [hidden]="lat.valid || lat.pristine" class="alert alert-danger mt-2">
         Lat is required
       </div>
     </div>
     <div class="col-3 form-group">
-      <input type="text" class="form-control" [(ngModel)]="model.lng" name="lng" #lng="ngModel" required>
-      <div [hidden]="lng.valid || lng.pristine" class="alert alert-danger">
+      <input type="text" class="form-control" [(ngModel)]="pharmacyModel.lng" name="lng" #lng="ngModel" required>
+      <div [hidden]="lng.valid || lng.pristine" class="alert alert-danger mt-2">
         Lng is required
       </div>
     </div>
+
+    <div class="col-12">
+      <h4>Öffnungszeiten</h4>
+    </div>
+
+    <div class="col-4 form-group">
+      <label for="mo">Montag</label>
+      <input type="text" class="form-control" [(ngModel)]="pharmacyModel.mo" name="mo">
+    </div>
+    <div class="col-4 form-group">
+      <label for="tu">Dienstag</label>
+      <input type="text" class="form-control" [(ngModel)]="pharmacyModel.tu" name="tu">
+    </div>
+    <div class="col-4 form-group">
+      <label for="we">Mittwoch</label>
+      <input type="text" class="form-control" [(ngModel)]="pharmacyModel.we" name="we">
+    </div>
+    <div class="col-4 form-group">
+      <label for="th">Donnerstag</label>
+      <input type="text" class="form-control" [(ngModel)]="pharmacyModel.th" name="th">
+    </div>
+    <div class="col-4 form-group">
+      <label for="fr">Freitag</label>
+      <input type="text" class="form-control" [(ngModel)]="pharmacyModel.fr" name="fr">
+    </div>
+    <div class="col-4 form-group">
+      <label for="sa">Samstag</label>
+      <input type="text" class="form-control" [(ngModel)]="pharmacyModel.sa" name="sa">
+    </div>
+    <div class="col-4 form-group">
+      <label for="su">Sonntag</label>
+      <input type="text" class="form-control" [(ngModel)]="pharmacyModel.su" name="su">
+    </div>
+
     <div class="col-12 form-group">
       <button type="submit" class="btn btn-success" [disabled]="!pharmacyForm.form.valid">Speichern</button>
     </div>

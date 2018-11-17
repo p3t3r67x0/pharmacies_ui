@@ -1,0 +1,73 @@
+<div id="featureProperties" class="row no-mlr">
+  <div class="map col-9" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)" (leafletMapMoveEnd)="onMapMove($event)"></div>
+  <div id="info" class="col-3 no-p">
+    <div *ngIf="name" class="info-box">
+      <h2>{{ name }}</h2>
+      <address class="mb-0">
+        {{ adr }}<br>
+        {{ zip }} {{ city }}<br>
+        {{ tel }}<br>
+        <a *ngIf="web" href="{{ web }}" target="_blank">{{ web }}</a>
+      </address>
+    </div>
+    <div *ngIf="!name" class="info-box">
+      <h2 class="text-center">
+        Willkommen beim Apothekenfinder!
+      </h2>
+      <br>
+      <div>
+  
+        <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+          <div class="col-auto">
+            <label class="sr-only" for="inputSearch">Suche</label>
+            <div class="input-group mb-2">
+              <input ngxTypeahead type="text" class="form-control" id="inputSearch" [(ngModel)]="searchFormModel.q" name="q" placeholder="Apotheke" [value]="query3" [taList]="staticList" (taSelected)="handleStaticResultSelected($event)">
+              <div class="input-group-append">
+                <button type="submit" class="input-group-text">Suche</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div *ngIf="!name">
+      <p class="info-use">Klicken Sie auf einen Marker, um Adresse und Öffnungszeiten der gewählten Apotheke anzuzeigen.</p>
+      <img src="./assets/unicorn-png-44512.png" width="90%" height="auto" class=" mx-auto d-block">
+    </div>
+    <div *ngIf="name" class="opening-hours">
+      <h2>Öffnungszeiten</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td style="border-top: none;" width="12%">Mo:</td>
+            <td style="border-top: none;">{{ mo }}</td>
+          </tr>
+          <tr>
+            <td width="12%">Di:</td>
+            <td>{{ tu }}</td>
+          </tr>
+          <tr>
+            <td width="12%">Mi:</td>
+            <td>{{ we }}</td>
+          </tr>
+          <tr>
+            <td width="12%">Do:</td>
+            <td>{{ th }}</td>
+          </tr>
+          <tr>
+            <td width="12%">Fr:</td>
+            <td>{{ fr }}</td>
+          </tr>
+          <tr>
+            <td width="12%">Sa:</td>
+            <td>{{ sa}}</td>
+          </tr>
+          <tr>
+            <td width="12%">So:</td>
+            <td class="bold">{{ su }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
