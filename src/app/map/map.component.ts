@@ -1,5 +1,6 @@
 import { Component, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { icon, latLng, Map, Layer, control, circleMarker, layerGroup, geoJSON, tileLayer } from 'leaflet';
+import { environment } from '../../environments/environment';
 import { leafletSearch } from 'leaflet-search';
 import { ApiService } from '../api.service';
 
@@ -40,7 +41,7 @@ export class MapComponent {
 
   searchFormModel = new Search(this.q);
 
-  url = 'http://localhost:5000/mock';
+  url = environment.apiBaseUrl + '/api/search/autocomplete';
   api = 'http';
   params = {};
 
