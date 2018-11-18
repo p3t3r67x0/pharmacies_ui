@@ -63,7 +63,7 @@ export class PharmacyFormComponent implements OnInit {
   updatePharmacy() {
     let that = this;
     this.apiService.updatePharmacy(this.pharmacyModel).subscribe(data => {
-      that.oid = data.pharmacy.oid;
+      that.oid = data['pharmacy']['oid'];
       that.cd.detectChanges();
     });
   }

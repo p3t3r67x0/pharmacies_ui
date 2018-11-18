@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { icon, latLng, Map, Layer, control, circleMarker, layerGroup, geoJSON, tileLayer } from 'leaflet';
 import { leafletSearch } from 'leaflet-search';
 import { ApiService } from '../api.service';
@@ -16,27 +16,8 @@ export class Search {
   styleUrls: ['./map.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MapComponent implements OnInit {
+export class MapComponent {
   constructor(private apiService: ApiService, private cd: ChangeDetectorRef) { }
-
-  public query3 = '';
-  public staticList = [
-    "guitar",
-    "drums",
-    "bass",
-    "electric guitars",
-    "keyboards",
-    "mic",
-    "bass guitars",
-    "trumpet",
-    "horns",
-    "guitar workshops",
-    "pedals"
-  ];
-
-  public handleStaticResultSelected(result) {
-    this.query3 = result;
-  }
 
   map: Map;
   formControlValue = '';
@@ -54,10 +35,14 @@ export class MapComponent implements OnInit {
   fr: string;
   sa: string;
   su: string;
-  q: string;
+  q: string = '';
+
 
   searchFormModel = new Search(this.q);
 
+  url = 'http://localhost:5000/mock';
+  api = 'http';
+  params = {};
 
   mapLayer = tileLayer('https://{s}.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA', {
     attribution: 'Apothekenfinder',
@@ -72,24 +57,33 @@ export class MapComponent implements OnInit {
     zoom: 17
   };
 
+  handleHttpResultSelected(result) {
+    this.q = result;
+    this.reqSearchResults(result);
+  }
+
   onMapReady(map: Map) {
     this.map = map;
-
-    this.map.on('click', function(e) {
-      this.name = '';
-    });
-
     this.getGeoJsonPharmacies(map);
   }
 
-  onSubmit(f: NgForm) {
+  onSubmit() {
+    this.reqSearchResults(this.q);
+  }
+
+  onMapMove(event) {
+    // this.map.removeLayer(this.geojson);
+    // this.getGeoJsonPharmacies(this.map);
+  }
+
+  reqSearchResults(searchQuery) {
     let that = this;
     let map = this.map;
 
     this.map.removeLayer(this.geojson);
 
-    this.apiService.getGeoJsonSearchPharmacies(f.value.q).subscribe(data => {
-      that.geojson = geoJSON(data.pharmacies, {
+    this.apiService.getGeoJsonSearchPharmacies(searchQuery).subscribe(data => {
+      that.geojson = geoJSON(data['pharmacies'], {
         onEachFeature: function(feature, layer) {
           layer.on('click', <LeafletMouseEvent>(e) => {
             map.setView(e.target.getLatLng(), 17);
@@ -108,19 +102,15 @@ export class MapComponent implements OnInit {
             that.su = feature.properties.su;
             that.cd.detectChanges();
           });
-        }).addTo(map);
+        }
+      }).addTo(map);
+
       map.fitBounds(that.geojson.getBounds());
     });
   }
 
-  onMapMove(event) {
-    // this.map.removeLayer(this.geojson);
-    // this.getGeoJsonPharmacies(this.map);
-  }
-
   getGeoJsonPharmacies(map) {
     let that = this;
-    let map = map;
 
     let bounds = {
       'x1': map.getBounds()._southWest.lng,
@@ -130,7 +120,7 @@ export class MapComponent implements OnInit {
     }
 
     this.apiService.getGeoJsonPharmacies(bounds).subscribe(data => {
-      that.geojson = geoJSON(data.pharmacies, {
+      that.geojson = geoJSON(data['pharmacies'], {
         onEachFeature: function(feature, layer) {
           layer.on('click', <LeafletMouseEvent>(e) => {
             map.setView(e.target.getLatLng(), 17);
@@ -149,7 +139,8 @@ export class MapComponent implements OnInit {
             that.su = feature.properties.su;
             that.cd.detectChanges();
           });
-        }).addTo(map);
+        }
+      }).addTo(map);
     });
   }
 }
