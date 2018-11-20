@@ -1,0 +1,51 @@
+<form (ngSubmit)="onSubmit()" #cityForm="ngForm">
+  <div class="row mb-3">
+    <div class="col-12">
+      <h2>{{ citiesModel.city }}</h2>
+    </div>
+    <div class="col-9 form-group">
+      <label>Stadt</label>
+      <input type="text" class="form-control" [(ngModel)]="citiesModel.city" name="city" #city="ngModel" required>
+      <div [hidden]="city.valid || city.pristine" class="alert alert-danger mt-2">
+        City is required
+      </div>
+    </div>
+    <div class="col-3 form-group">
+      <label>Zip</label>
+      <input type="text" class="form-control" [(ngModel)]="citiesModel.zip" name="zip" #zip="ngModel" required>
+      <div [hidden]="zip.valid || zip.pristine" class="alert alert-danger mt-2">
+        Zip is required
+      </div>
+    </div>
+    <div class="col-6 form-group">
+      <label>County</label>
+      <input type="text" class="form-control" [(ngModel)]="citiesModel.county" name="county" #county="ngModel" required>
+      <div [hidden]="county.valid || county.pristine" class="alert alert-danger mt-2">
+        County is required
+      </div>
+    </div>
+    <div class="col-6 form-group">
+      <label>Country</label>
+      <input type="text" class="form-control" [(ngModel)]="citiesModel.country" name="country" #country="ngModel">
+      <div [hidden]="country.valid || country.pristine" class="alert alert-danger mt-2">
+        Country is required
+      </div>
+    </div>
+    <div class="col-4 form-group">
+      <label>Citizen</label>
+      <input type="text" class="form-control" [(ngModel)]="citiesModel.citizen" name="citizen" #citizen="ngModel">
+    </div>
+    <div class="col-4 form-group">
+      <label>Lat</label>
+      <input type="text" class="form-control" [(ngModel)]="citiesModel.lat" name="lat" #lat="ngModel">
+    </div>
+    <div class="col-4 form-group">
+      <label>Lng</label>
+      <input type="text" class="form-control" [(ngModel)]="citiesModel.lng" name="lng" #lng="ngModel">
+    </div>
+
+    <div class="col-12 form-group">
+      <button type="submit" class="btn btn-success" [disabled]="!cityForm.form.valid">Speichern</button>
+    </div>
+  </div>
+</form>

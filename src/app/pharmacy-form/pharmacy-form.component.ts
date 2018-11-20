@@ -11,7 +11,7 @@ import { Pharmacy } from '../pharmacy';
 export class PharmacyFormComponent implements OnInit {
   constructor(private apiService: ApiService, private cd: ChangeDetectorRef) { }
 
-  @Input() item: string;
+  @Input() item: any = {};
 
   ngOnInit() {
     this.id = this.item['id'];

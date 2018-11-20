@@ -13,6 +13,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PharmacyFormComponent } from './pharmacy-form/pharmacy-form.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { MapComponent } from './map/map.component';
+import { CitiesComponent } from './cities/cities.component';
+import { CityFormComponent } from './city-form/city-form.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { MapComponent } from './map/map.component';
     DashboardComponent,
     PharmacyFormComponent,
     NavigationComponent,
-    MapComponent
+    MapComponent,
+    CitiesComponent,
+    CityFormComponent
   ],
   imports: [
     BrowserModule,

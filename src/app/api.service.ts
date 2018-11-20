@@ -30,4 +30,14 @@ export class ApiService {
     let apiUrl = environment.apiBaseUrl + '/api/pharmacy/' + data['id'];
     return this.http.put(apiUrl, data);
   }
+
+  updateCity(data) {
+    let apiUrl = environment.apiBaseUrl + '/api/city/' + data['id'];
+    return this.http.put(apiUrl, data);
+  }
+
+  getCities(page) {
+    let apiUrl = environment.apiBaseUrl + '/api/cities?page=' + page;
+    return this.http.get(apiUrl);
+  }
 }

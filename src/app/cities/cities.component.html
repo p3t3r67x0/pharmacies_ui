@@ -1,0 +1,8 @@
+<app-navigation (searchTerm)='xxx($event)'></app-navigation>
+<div class="container">
+  <ul class="list-unstyled">
+    <li *ngFor="let item of citiesData['cities'];">
+      <app-city-form [item]=item></app-city-form>
+    </li>
+  </ul>
+</div>
