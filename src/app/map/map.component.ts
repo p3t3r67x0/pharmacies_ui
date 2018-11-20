@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
-import { icon, latLng, Map, Layer, control, circleMarker, layerGroup, geoJSON, tileLayer } from 'leaflet';
+import { icon, marker, latLng, Map, Layer, geoJSON, tileLayer } from 'leaflet';
 import { environment } from '../../environments/environment';
 import { leafletSearch } from 'leaflet-search';
 import { ApiService } from '../api.service';
@@ -19,6 +19,12 @@ export class Search {
 })
 export class MapComponent {
   constructor(private apiService: ApiService, private cd: ChangeDetectorRef) { }
+
+  markerIcon = icon({
+    iconAnchor: [13, 41],
+    iconUrl: 'assets/marker-icon.png',
+    shadowUrl: 'assets/marker-shadow.png'
+  });
 
   map: Map;
   formControlValue = '';
@@ -45,8 +51,9 @@ export class MapComponent {
   api = 'http';
   params = {};
 
-  mapLayer = tileLayer('https://{s}.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA', {
-    attribution: 'Apothekenfinder',
+  mapLayer = tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    attribution: '<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> | <a href="https://carto.com/attributions">Carto</a>',
+    subdomains: 'abcd',
     detectRetina: false,
     maxZoom: 17,
     minZoom: 1
@@ -85,6 +92,9 @@ export class MapComponent {
 
     this.apiService.getGeoJsonSearchPharmacies(searchQuery).subscribe(data => {
       that.geojson = geoJSON(data['pharmacies'], {
+        pointToLayer: function(feature, latlng) {
+          return marker(latlng, { icon: that.markerIcon });
+        },
         onEachFeature: function(feature, layer) {
           layer.on('click', <LeafletMouseEvent>(e) => {
             map.setView(e.target.getLatLng(), 17);
@@ -104,7 +114,7 @@ export class MapComponent {
             that.cd.detectChanges();
           });
         }
-      }).addTo(map);
+      }).addTo(that.map);
 
       map.fitBounds(that.geojson.getBounds());
     });
@@ -122,6 +132,9 @@ export class MapComponent {
 
     this.apiService.getGeoJsonPharmacies(bounds).subscribe(data => {
       that.geojson = geoJSON(data['pharmacies'], {
+        pointToLayer: function(feature, latlng) {
+          return marker(latlng, { icon: that.markerIcon });
+        },
         onEachFeature: function(feature, layer) {
           layer.on('click', <LeafletMouseEvent>(e) => {
             map.setView(e.target.getLatLng(), 17);
@@ -141,7 +154,7 @@ export class MapComponent {
             that.cd.detectChanges();
           });
         }
-      }).addTo(map);
+      }).addTo(that.map);
     });
   }
 }
