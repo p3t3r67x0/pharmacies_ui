@@ -17,13 +17,16 @@ export class CityFormComponent implements OnInit {
     this.id = this.item['id'];
     this.zip = this.item['zip'];
     this.city = this.item['city'];
+    this.state = this.item['state'];
     this.county = this.item['county'];
+    this.district = this.item['district'];
     this.country = this.item['country'];
     this.citizen = this.item['citizen'];
     this.lat = this.item['lat'];
     this.lng = this.item['lng'];
+    console.log(this.item['district'])
 
-    this.citiesModel = new City(this.id, this.zip, this.city, this.county, this.country, this.citizen, this.lat, this.lng);
+    this.citiesModel = new City(this.id, this.zip, this.city, this.county, this.country, this.citizen, this.district, this.state, this.lat, this.lng);
   }
 
   citiesModel: City;
@@ -34,11 +37,12 @@ export class CityFormComponent implements OnInit {
   county: string;
   country: string;
   citizen: string;
+  district: string;
+  state: string;
   lat: string;
   lng: string;
 
   onSubmit() {
-    console.log('UPDATE entry');
     this.updateCity();
   }
 

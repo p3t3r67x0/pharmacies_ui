@@ -67,6 +67,7 @@ export class MapComponent {
 
   handleHttpResultSelected(result) {
     this.q = result;
+    console.log(result);
     this.reqSearchResults(result);
   }
 

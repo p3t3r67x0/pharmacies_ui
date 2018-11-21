@@ -1,7 +1,7 @@
 <app-navigation (searchTerm)='xxx($event)'></app-navigation>
 <div class="container">
-  <ul class="list-unstyled">
-    <li *ngFor="let item of citiesData['cities'];">
+  <ul class="list-group">
+    <li *ngFor="let item of citiesData['cities'];" class="list-group-item" style="background: #f7f7f9">
       <app-city-form [item]=item></app-city-form>
     </li>
   </ul>
